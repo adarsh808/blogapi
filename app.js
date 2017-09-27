@@ -49,7 +49,6 @@ app.get('/blogs', function(req, res){blogModel.find(function(err, result) {
 app.get('/blogs/:id/getcomment',function(req, res){commentModel.find({'blogId': req.params.id},function(err, result) {
   if (err) {
    console.log(err);
-
    res.send(err);
   } else {
    console.log(result);
@@ -98,7 +97,6 @@ app.post('/blogs/:id/createcomment', function(req, res) {
    res.send(newComment);
   }
  });
-
 });
 //get a particular blog using id
 app.get('/blogs/:id', function(req, res){blogModel.findOne({'_id': req.params.id},function(err, result){
@@ -152,7 +150,6 @@ app.get('*', function(req, res, next) {
  res.status = 404;
  next("Path not Found !");
 });
-
 //Error handler
 app.use(function(err, req, res, next) {
  if (res.status == 404) {
