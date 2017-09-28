@@ -37,7 +37,8 @@ app.get('/', function(req, res) {
  res.send("This is blog Application");
 });
 //get all blogs
-app.get('/blogs', function(req, res){blogModel.find(function(err, result) {
+app.get('/blogs', function(req, res){
+  blogModel.find(function(err, result) {
   if (err) {
    res.send(err);
   } else {
@@ -46,7 +47,8 @@ app.get('/blogs', function(req, res){blogModel.find(function(err, result) {
  });
 });
 //get comments of a blog
-app.get('/blogs/:id/getcomment',function(req, res){commentModel.find({'blogId': req.params.id},function(err, result) {
+app.get('/blogs/:id/getcomment',function(req, res){
+  commentModel.find({'blogId': req.params.id},function(err, result) {
   if (err) {
    console.log(err);
    res.send(err);
@@ -99,7 +101,8 @@ app.post('/blogs/:id/createcomment', function(req, res) {
  });
 });
 //get a particular blog using id
-app.get('/blogs/:id', function(req, res){blogModel.findOne({'_id': req.params.id},function(err, result){
+app.get('/blogs/:id', function(req, res){
+  blogModel.findOne({'_id': req.params.id},function(err, result){
   if (err) {
    console.log(err);
    res.send(err);
@@ -110,10 +113,7 @@ app.get('/blogs/:id', function(req, res){blogModel.findOne({'_id': req.params.id
 //To Edit A blog
 app.put('/blogs/:id/edit', function(req, res) {
  var update = req.body;
- console.log(newBlog.lastModified)
- blogModel.findOneAndUpdate({
-  '_id': req.params.id
- }, update, function(err, result) {
+ blogModel.findOneAndUpdate({'_id': req.params.id},update,function(err, result) {
   if (err) {
    console.log(err)
    res.send(err)
@@ -124,7 +124,8 @@ app.put('/blogs/:id/edit', function(req, res) {
  });
 });
 //To delete a particular blog
-app.post('/blogs/:id/delete',function(req, res){blogModel.remove({'_id': req.params.id },function(err, result){
+app.post('/blogs/:id/delete',function(req, res){
+  blogModel.remove({'_id': req.params.id },function(err, result){
    if (err) {
     console.log(err)
     res.send(err)
@@ -135,7 +136,8 @@ app.post('/blogs/:id/delete',function(req, res){blogModel.remove({'_id': req.par
   })
  })
  //to delete a comment
-app.post('/blogs/:id/commentdelete',function(req, res){commentModel.remove({'_id': req.params.id },function(err, result){
+app.post('/blogs/:id/commentdelete',function(req, res){
+  commentModel.remove({'_id': req.params.id },function(err, result){
    if (err) {
     console.log(err)
     res.send(err)
